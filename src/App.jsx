@@ -30,14 +30,18 @@ export default function App() {
           <a href="#experience" className="hover:underline">Experience</a>
           <a href="#projects" className="hover:underline">Projects</a>
           <a href="#contact" className="hover:underline">Contact</a>
-          <a href="/Full_time_Resume_DataEngg_final.pdf" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener" className="hover:underline">Resume</a>
+          <a href="/Full_time_Resume_DataEngg_final.pdf" target="_blank" rel="noopener noreferrer" className="hover:underline">Resume</a>
+          {/* Desktop theme toggle */}
+          <button onClick={() => setDark(!dark)} aria-pressed={dark} className="px-3 py-1 rounded border bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800">
+            {dark ? '☀️ Light' : '🌙 Dark'}
+          </button>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
           <button onClick={() => setDark(!dark)} className="px-3 py-1 rounded bg-gray-800 text-white dark:bg-gray-200 dark:text-black">
             {dark ? "Light" : "Dark"}
           </button>
-          <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Open menu">
+          <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Open menu" aria-expanded={menuOpen}>
             <div className="space-y-1">
               <div className="w-6 h-0.5 bg-gray-700 dark:bg-gray-200"></div>
               <div className="w-6 h-0.5 bg-gray-700 dark:bg-gray-200"></div>
@@ -50,14 +54,14 @@ export default function App() {
       {/* MOBILE MENU */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div initial={{height:0}} animate={{height:"auto"}} exit={{height:0}} className="md:hidden overflow-hidden bg-white dark:bg-black/60 backdrop-blur px-6 py-4 shadow-lg">
+          <motion.div initial={{height:0}} animate={{height:"auto"}} exit={{height:0}} className="md:hidden overflow-hidden bg-white dark:bg:black/60 backdrop-blur px-6 py-4 shadow-lg">
             <div className="flex flex-col gap-4 text-sm">
               <a href="#summary" onClick={() => setMenuOpen(false)}>Summary</a>
               <a href="#skills" onClick={() => setMenuOpen(false)}>Skills</a>
               <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
               <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
               <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
-              <a href="/Full_time_Resume_DataEngg_final.pdf" target="_blank" rel="noopener noreferrer" target="_blank" rel="noopener" onClick={() => setMenuOpen(false)}>Resume</a>
+              <a href="/Full_time_Resume_DataEngg_final.pdf" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>Resume</a>
               <button onClick={() => setMenuOpen(false)} className="mt-2 px-3 py-1 rounded bg-gray-800 text-white dark:bg-gray-200 dark:text-black">{dark ? "Light" : "Dark"}</button>
             </div>
           </motion.div>
@@ -75,7 +79,7 @@ export default function App() {
         {/* SUMMARY */}
         <section id="summary" className="mb-6">
           <h2 className="text-2xl font-bold mb-3">Professional Summary</h2>
-          <p>Senior Data Engineer with expertise in large-scale Spark pipelines, AWS analytics, Airflow orchestration, and AI-driven wireless optimization. Delivered 50% latency improvements and multi-tenant RF analytics infrastructure.</p>
+          <p>Senior Data Engineer with expertise in large-scale Spark pipelines, AWS analytics, Airflow orchestration, and AI-driven wireless optimization. Delivered 50% latency improvements and modernized observability for production workloads.</p>
         </section>
 
         {/* TECH STACK (moved after summary) */}
@@ -123,9 +127,9 @@ export default function App() {
           </div>
         </section>
 
-        {/* PROJECTS TIMELINE (scrollable) */}
-        <section id="projects" className="mb-12 snap-y snap-mandatory h-screen overflow-y-scroll pr-4">
-          <h2 className="text-2xl font-bold mb-3 sticky top-20 bg-white/50 dark:bg-black/40 backdrop-blur py-2">Projects Timeline</h2>
+        {/* PROJECTS TIMELINE (was scrollable; converted to normal flow) */}
+        <section id="projects" className="mb-12 pr-4">
+          <h2 className="text-2xl font-bold mb-3">Projects Timeline</h2>
           <div className="relative border-l border-gray-400 dark:border-gray-600 ml-8 pl-8">
 
             {/* YEAR 2025 */}
@@ -185,7 +189,7 @@ export default function App() {
               <h3 className="font-semibold text-lg flex items-center gap-3">
                 <img src="/icon-net.svg" className="h-6" alt="net"/> Bandwidth Customization on Demand (2017)
               </h3>
-              <p className="mt-2">Implemented demand-based bandwidth customization on a Mininet topology using OpenvSwitch and RYU controller, demonstrating SDN-based dynamic bandwidth allocation.</p>
+              <p className="mt-2">Implemented demand-based bandwidth customization on a Mininet topology using OpenvSwitch and RYU controller, demonstrating SDN-based dynamic bandwidth allocation and QoS enforcement.</p>
             </motion.div>
 
             {/* YEAR 2016 */}
@@ -209,7 +213,7 @@ export default function App() {
               <h3 className="font-semibold text-lg flex items-center gap-3">
                 <img src="/icon-telecom.svg" className="h-6" alt="telecom"/> Telecom Order Service Management — TCS (2010–2016)
               </h3>
-              <p className="mt-2">Developed Java and C backend modules for Order Service Management (OSM), improved data throughput, reduced incidents, and enhanced customer retention for telecom clients.</p>
+              <p className="mt-2">Developed Java and C backend modules for Order Service Management (OSM), improved data throughput, reduced incidents, and enhanced customer retention for telecom customers.</p>
             </motion.div>
 
           </div>
@@ -220,7 +224,7 @@ export default function App() {
           <h2 className="text-2xl font-bold mb-3">Contact</h2>
           <p><strong>Email:</strong> <a href="mailto:abhi06548@yahoo.com">abhi06548@yahoo.com</a></p>
           <p><strong>Phone:</strong> +1 682-256-9224</p>
-          <p><strong>LinkedIn:</strong> www.linkedin.com/in/abhishek06548</p>
+          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/abhishek06548" target="_blank" rel="noopener noreferrer">https://www.linkedin.com/in/abhishek06548</a></p>
         </section>
       </main>
 
