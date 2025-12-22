@@ -2,18 +2,45 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
-  const [dark, setDark] = useState(false);
+  // Initialize theme from localStorage or system preference
+  const [dark, setDark] = useState(() => {
+    try {
+      const s = localStorage.getItem('theme');
+      if (s === 'dark') return true;
+      if (s === 'light') return false;
+    } catch (e) {
+      // ignore
+    }
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    return false;
+  });
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (dark) document.documentElement.classList.add("dark");
-    else document.documentElement.classList.remove("dark");
+    try {
+      if (dark) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    } catch (e) {
+      if (dark) document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
+    }
   }, [dark]);
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
-
-      {/* NAVBAR */}
       <nav className="sticky top-0 z-50 backdrop-blur bg-white/70 dark:bg-black/40 shadow-sm p-4 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-2 text-lg font-bold">
           {!dark ? (
@@ -31,17 +58,32 @@ export default function App() {
           <a href="#projects" className="hover:underline">Projects</a>
           <a href="#contact" className="hover:underline">Contact</a>
           <a href="/Full_time_Resume_DataEngg_final.pdf" target="_blank" rel="noopener noreferrer" className="hover:underline">Resume</a>
-          {/* Desktop theme toggle */}
-          <button onClick={() => setDark(!dark)} aria-pressed={dark} className="px-3 py-1 rounded border bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800">
+          <button
+            onClick={() => setDark((s) => !s)}
+            aria-pressed={dark}
+            className="px-3 py-1 rounded border bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800"
+            title={dark ? 'Switch to light theme' : 'Switch to dark theme'}
+          >
             {dark ? '☀️ Light' : '🌙 Dark'}
           </button>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
-          <button onClick={() => setDark(!dark)} className="px-3 py-1 rounded bg-gray-800 text-white dark:bg-gray-200 dark:text-black">
-            {dark ? "Light" : "Dark"}
+          <button
+            onClick={() => setDark((s) => !s)}
+            aria-pressed={dark}
+            className="px-3 py-1 rounded bg-gray-800 text-white dark:bg-gray-200 dark:text-black"
+            title={dark ? 'Switch to light theme' : 'Switch to dark theme'}
+          >
+            {dark ? 'Light' : 'Dark'}
           </button>
-          <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Open menu" aria-expanded={menuOpen}>
+
+          <button
+            className="md:hidden"
+            onClick={() => setMenuOpen((s) => !s)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+          >
             <div className="space-y-1">
               <div className="w-6 h-0.5 bg-gray-700 dark:bg-gray-200"></div>
               <div className="w-6 h-0.5 bg-gray-700 dark:bg-gray-200"></div>
@@ -51,10 +93,9 @@ export default function App() {
         </div>
       </nav>
 
-      {/* MOBILE MENU */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div initial={{height:0}} animate={{height:"auto"}} exit={{height:0}} className="md:hidden overflow-hidden bg-white dark:bg:black/60 backdrop-blur px-6 py-4 shadow-lg">
+          <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }} className="md:hidden overflow-hidden bg-white dark:bg-black/60 backdrop-blur px-6 py-4 shadow-lg">
             <div className="flex flex-col gap-4 text-sm">
               <a href="#summary" onClick={() => setMenuOpen(false)}>Summary</a>
               <a href="#skills" onClick={() => setMenuOpen(false)}>Skills</a>
@@ -62,13 +103,12 @@ export default function App() {
               <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
               <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
               <a href="/Full_time_Resume_DataEngg_final.pdf" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>Resume</a>
-              <button onClick={() => setMenuOpen(false)} className="mt-2 px-3 py-1 rounded bg-gray-800 text-white dark:bg-gray-200 dark:text-black">{dark ? "Light" : "Dark"}</button>
+              <button onClick={() => { setDark((s) => !s); setMenuOpen(false); }} className="mt-2 px-3 py-1 rounded bg-gray-800 text-white dark:bg-gray-200 dark:text-black">{dark ? 'Light' : 'Dark'}</button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* HEADER */}
       <header className="bg-gradient-to-r from-slate-900 to-sky-700 text-white py-16 text-center">
         <h1 className="text-4xl font-extrabold">Abhishek Datta</h1>
         <p className="mt-2 opacity-90">Senior Data Engineer • AWS • Spark • Airflow • ETL • AI-driven Analytics</p>
@@ -76,13 +116,11 @@ export default function App() {
 
       <main className="container mx-auto px-6 py-12 max-w-4xl">
 
-        {/* SUMMARY */}
         <section id="summary" className="mb-6">
           <h2 className="text-2xl font-bold mb-3">Professional Summary</h2>
           <p>Senior Data Engineer with expertise in large-scale Spark pipelines, AWS analytics, Airflow orchestration, and AI-driven wireless optimization. Delivered 50% latency improvements and modernized observability for production workloads.</p>
         </section>
 
-        {/* TECH STACK (moved after summary) */}
         <section id="skills" className="mb-8">
           <h2 className="text-2xl font-bold mb-3">Technical Stack</h2>
           <p><strong>Languages:</strong> Python, Java, SQL, Shell scripting</p>
@@ -93,7 +131,6 @@ export default function App() {
           <p><strong>GenAI:</strong> ChatGPT, Gemini, Copilot, Cursor (Prompt engineering & pipeline automation)</p>
         </section>
 
-        {/* EXPERIENCE - full timeline */}
         <section id="experience" className="mb-12">
           <h2 className="text-2xl font-bold mb-3">Experience</h2>
           <div className="space-y-6">
@@ -127,15 +164,12 @@ export default function App() {
           </div>
         </section>
 
-        {/* PROJECTS TIMELINE (was scrollable; converted to normal flow) */}
         <section id="projects" className="mb-12 pr-4">
           <h2 className="text-2xl font-bold mb-3">Projects Timeline</h2>
           <div className="relative border-l border-gray-400 dark:border-gray-600 ml-8 pl-8">
 
-            {/* YEAR 2025 */}
             <div className="absolute -left-36 top-0 text-4xl font-extrabold opacity-30 select-none">2025</div>
 
-            {/* AI-Enhanced RRM (2021 - Present) */}
             <motion.div className="mb-16 ml-6 snap-start relative" initial={{opacity:0, x:50}} whileInView={{opacity:1, x:0}} transition={{duration:0.5}}>
               <span className="absolute -left-11 top-2 flex items-center justify-center w-6 h-6 bg-blue-600 rounded-full"></span>
               <h3 className="font-semibold text-lg flex items-center gap-3">
@@ -144,10 +178,8 @@ export default function App() {
               <p className="mt-2">AI-driven self-optimizing RF-management cloud services on AWS for Cisco DNA-Center cloud and Meraki Wireless. Built scalable PySpark ETL pipelines for multi-GB RF telemetry, enabled real-time closed-loop automation, designed PostgreSQL schemas and GraphQL APIs, and implemented CI/CD + Airflow orchestration.</p>
             </motion.div>
 
-            {/* YEAR 2021 */}
             <div className="absolute -left-36 mt-4 text-4xl font-extrabold opacity-30 select-none">2021</div>
 
-            {/* IoT Operations Center (2019 - 2021) */}
             <motion.div className="mb-16 ml-6 snap-start relative" initial={{opacity:0, x:50}} whileInView={{opacity:1, x:0}} transition={{duration:0.5}}>
               <span className="absolute -left-11 top-2 flex items-center justify-center w-6 h-6 bg-green-600 rounded-full"></span>
               <h3 className="font-semibold text-lg flex items-center gap-3">
@@ -156,10 +188,8 @@ export default function App() {
               <p className="mt-2">Developed REST API microservices and backend services for a multi-tenant IoT operations platform, automated E2E tests with PyATS, containerized services on Kubernetes, and improved real-time device telemetry retrieval and reliability.</p>
             </motion.div>
 
-            {/* YEAR 2019 */}
             <div className="absolute -left-36 mt-4 text-4xl font-extrabold opacity-30 select-none">2019</div>
 
-            {/* IoT-Sensor Smart Agriculture */}
             <motion.div className="mb-16 ml-6 snap-start relative" initial={{opacity:0, x:50}} whileInView={{opacity:1, x:0}} transition={{duration:0.5}}>
               <span className="absolute -left-11 top-2 flex items-center justify-center w-6 h-6 bg-yellow-600 rounded-full"></span>
               <h3 className="font-semibold text-lg flex items-center gap-3">
@@ -168,10 +198,8 @@ export default function App() {
               <p className="mt-2">Developed sensor firmware and embedded Java modules to capture environmental metrics, integrated with backend analytics to deliver high-accuracy smart agriculture insights.</p>
             </motion.div>
 
-            {/* YEAR 2018 */}
             <div className="absolute -left-36 mt-4 text-4xl font-extrabold opacity-30 select-none">2018</div>
 
-            {/* Social Media Web-App */}
             <motion.div className="mb-16 ml-6 snap-start relative" initial={{opacity:0, x:50}} whileInView={{opacity:1, x:0}} transition={{duration:0.5}}>
               <span className="absolute -left-11 top-2 flex items-center justify-center w-6 h-6 bg-red-600 rounded-full"></span>
               <h3 className="font-semibold text-lg flex items-center gap-3">
@@ -180,10 +208,8 @@ export default function App() {
               <p className="mt-2">Created a socio-academic media platform using HTML, CSS, jQuery, PHP (AJAX), and MySQL backend. Focused on scalable design and user engagement workflows.</p>
             </motion.div>
 
-            {/* YEAR 2017 */}
             <div className="absolute -left-36 mt-4 text-4xl font-extrabold opacity-30 select-none">2017</div>
 
-            {/* Bandwidth Customization */}
             <motion.div className="mb-16 ml-6 snap-start relative" initial={{opacity:0, x:50}} whileInView={{opacity:1, x:0}} transition={{duration:0.5}}>
               <span className="absolute -left-11 top-2 flex items-center justify-center w-6 h-6 bg-purple-600 rounded-full"></span>
               <h3 className="font-semibold text-lg flex items-center gap-3">
@@ -192,10 +218,8 @@ export default function App() {
               <p className="mt-2">Implemented demand-based bandwidth customization on a Mininet topology using OpenvSwitch and RYU controller, demonstrating SDN-based dynamic bandwidth allocation and QoS enforcement.</p>
             </motion.div>
 
-            {/* YEAR 2016 */}
             <div className="absolute -left-36 mt-4 text-4xl font-extrabold opacity-30 select-none">2016</div>
 
-            {/* Fog Node */}
             <motion.div className="mb-16 ml-6 snap-start relative" initial={{opacity:0, x:50}} whileInView={{opacity:1, x:0}} transition={{duration:0.5}}>
               <span className="absolute -left-11 top-2 flex items-center justify-center w-6 h-6 bg-teal-600 rounded-full"></span>
               <h3 className="font-semibold text-lg flex items-center gap-3">
@@ -204,10 +228,8 @@ export default function App() {
               <p className="mt-2">Designed a fog-node simulation model using Java multithreading and network programming, demonstrating improved latency and service resilience over cloud-only solutions.</p>
             </motion.div>
 
-            {/* YEAR 2010 */}
             <div className="absolute -left-36 mt-4 text-4xl font-extrabold opacity-30 select-none">2010</div>
 
-            {/* TCS Telecom */}
             <motion.div className="mb-16 ml-6 snap-start relative" initial={{opacity:0, x:50}} whileInView={{opacity:1, x:0}} transition={{duration:0.5}}>
               <span className="absolute -left-11 top-2 flex items-center justify-center w-6 h-6 bg-gray-600 rounded-full"></span>
               <h3 className="font-semibold text-lg flex items-center gap-3">
@@ -219,7 +241,6 @@ export default function App() {
           </div>
         </section>
 
-        {/* CONTACT */}
         <section id="contact" className="mb-20">
           <h2 className="text-2xl font-bold mb-3">Contact</h2>
           <p><strong>Email:</strong> <a href="mailto:abhi06548@yahoo.com">abhi06548@yahoo.com</a></p>
