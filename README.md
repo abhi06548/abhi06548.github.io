@@ -4,16 +4,20 @@ A modern, responsive portfolio website showcasing professional experience, skill
 
 ## Features
 
-- **Left Sidebar Navigation**: Fixed sidebar navigation with smooth scrolling and active section highlighting
-- **Time-Based Theme**: Automatically switches between light and dark mode based on local time (6 AM - 6 PM: Light mode, 6 PM - 6 AM: Dark mode)
+- **Multi-Page Routing**: Separate pages for main content and detailed career timeline using React Router
+- **Top Navigation Bar**: Clean, left-aligned navigation with section highlighting
+- **Time-Based Theme**: Automatically switches between light and dark mode based on local time with manual toggle option
 - **Scroll Spy**: Navigation automatically highlights the current section as you scroll
-- **Responsive Design**: Mobile-friendly with a collapsible sidebar menu
+- **Responsive Design**: Mobile-friendly with a collapsible menu
+- **Interactive Timeline**: Beautiful career & projects timeline with alternating left/right layout and animations
 - **Smooth Animations**: Framer Motion animations for enhanced user experience
 - **Modern UI**: Built with Tailwind CSS for a clean, professional look
+- **GitHub Pages SPA Support**: Client-side routing works seamlessly on GitHub Pages
 
 ## Tech Stack
 
 - **React 18** - JavaScript library for building user interfaces
+- **React Router DOM** - Client-side routing for single-page applications
 - **Vite** - Next-generation frontend build tool
 - **Tailwind CSS** - Utility-first CSS framework
 - **Framer Motion** - Animation library for React
@@ -64,16 +68,38 @@ npm run preview
 
 ```
 ├── src/
-│   ├── App.jsx          # Main application component
-│   ├── main.jsx         # React entry point
-│   ├── index.css        # Global styles and Tailwind imports
-│   └── components/      # Reusable components (if any)
-├── public/              # Static assets (images, PDFs, etc.)
+│   ├── App.jsx          # Home page component (Summary, Skills, Experience, Contact)
+│   ├── Timeline.jsx     # Career & Projects timeline page
+│   ├── main.jsx         # React entry point with React Router setup
+│   └── index.css        # Global styles, Tailwind imports, and custom animations
+├── public/
+│   ├── Full_time_Resume_DataEngg_final.pdf
+│   ├── favicon.svg                         # Site favicon
+│   ├── 404.html                            # GitHub Pages SPA fallback
+│   └── icon-*.svg                          # Various project/skill icons
 ├── dist/                # Production build output
-├── index.html           # HTML template
+├── index.html           # HTML template with SPA redirect script
 ├── vite.config.js       # Vite configuration
 ├── tailwind.config.js   # Tailwind CSS configuration
 └── package.json         # Project dependencies and scripts
+```
+
+## Pages
+
+### Home Page (`/`)
+Main landing page with quick overview:
+- Professional Summary
+- Technical Skills
+- Work Experience (condensed)
+- Contact Information
+
+### Timeline Page (`/timeline`)
+Detailed career and projects timeline with:
+- Interactive alternating left/right layout
+- Industrial/Professional projects (left-aligned)
+- Academic history and projects (right-aligned)
+- Year-based navigation with sticky badges
+- Smooth animations and transitions
 
 ## Key Features Explained
 
@@ -83,7 +109,7 @@ The application automatically adjusts the theme based on the local time:
 - **Light Mode**: 6:00 AM - 5:59 PM
 - **Dark Mode**: 6:00 PM - 5:59 AM
 
-The theme updates every minute, ensuring seamless transitions throughout the day.
+Users can also manually toggle the theme using the button in the top-right corner of the navigation bar.
 
 ### Navigation Scroll Alignment
 
