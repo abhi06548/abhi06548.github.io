@@ -44,3 +44,356 @@ body {
 .dark ::-webkit-scrollbar-thumb:hover {
   background: #6b7280;
 }
+
+/* Timeline Modern Enhancements */
+
+/* Timeline dot glow effect */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+  }
+}
+
+/* Smooth gradient animation for timeline line */
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+
+/* Card entrance animations */
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Enhanced card shadows with layered effect */
+.timeline-card {
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-card:hover {
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.dark .timeline-card {
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.dark .timeline-card:hover {
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.4),
+    0 10px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Gradient border effect for timeline cards */
+.timeline-card-left {
+  position: relative;
+}
+
+.timeline-card-left::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--card-color-start), var(--card-color-end));
+  border-radius: 0 8px 8px 0;
+}
+
+.timeline-card-right {
+  position: relative;
+}
+
+.timeline-card-right::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--card-color-start), var(--card-color-end));
+  border-radius: 8px 0 0 8px;
+}
+
+/* Year badge glow effect */
+.year-badge {
+  box-shadow: 
+    0 10px 25px -5px rgba(0, 0, 0, 0.2),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.year-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 15px 30px -5px rgba(0, 0, 0, 0.3),
+    0 10px 15px -6px rgba(0, 0, 0, 0.15);
+}
+
+/* Timeline dot with pulse effect */
+.timeline-dot {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  /* Stack timeline vertically on mobile */
+  .timeline-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Move timeline line to left on mobile */
+  .timeline-line-mobile {
+    left: 20px !important;
+    transform: none !important;
+  }
+  
+  /* Adjust cards for mobile */
+  .timeline-card-left,
+  .timeline-card-right {
+    text-align: left !important;
+    margin-left: 40px;
+  }
+  
+  /* Adjust dots for mobile */
+  .timeline-dot-mobile {
+    left: 14px !important;
+    right: auto !important;
+  }
+  
+  /* Adjust year badge for mobile */
+  .year-badge {
+    font-size: 1.25rem !important;
+    padding: 0.5rem 1.5rem !important;
+  }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .timeline-card {
+    padding: 1rem !important;
+  }
+  
+  .timeline-card h3 {
+    font-size: 1.125rem !important;
+  }
+}
+
+/* Smooth scroll snap for timeline sections */
+.timeline-section {
+  scroll-snap-align: start;
+  scroll-margin-top: 6rem;
+}
+
+/* Link hover effects */
+a:hover {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Button press effect */
+button:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+/* Backdrop blur effect for sticky elements */
+.sticky-blur {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Icon scale effect on hover */
+.icon-hover {
+  transition: transform 0.3s ease;
+}
+
+.icon-hover:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Loading animation for images */
+img {
+  transition: opacity 0.3s ease-in-out;
+}
+
+img:not([src]) {
+  opacity: 0;
+}
+
+/* Focus visible styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Page load fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.fade-in-delay {
+  animation: fadeIn 0.8s ease-out 0.2s both;
+}
+
+/* Contact section enhancements */
+.contact-link {
+  position: relative;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.contact-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  transition: width 0.3s ease;
+}
+
+.contact-link:hover::after {
+  width: 100%;
+}
+
+.contact-link:hover {
+  color: #3b82f6;
+  transform: translateX(4px);
+}
+
+/* Skills badge styling */
+.skill-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin: 0.25rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 20px -5px rgba(102, 126, 234, 0.4);
+}
+
+/* Timeline line gradient animation */
+.timeline-line {
+  background-size: 100% 200%;
+  animation: gradient-flow 3s ease infinite;
+}
+
+/* Experience card subtle pulse on hover */
+@keyframes subtle-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+}
+
+/* Header gradient enhancement */
+.header-gradient {
+  background: linear-gradient(135deg, #1e293b 0%, #0c4a6e 50%, #0369a1 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.header-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Smooth section transitions */
+section {
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Print styles */
+@media print {
+  nav, .theme-toggle, .mobile-menu {
+    display: none !important;
+  }
+  
+  .timeline-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
