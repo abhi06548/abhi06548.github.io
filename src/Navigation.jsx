@@ -78,14 +78,14 @@ export default function Navigation({ dark, setDark, activeSection }) {
             Experience
           </a>
           <Link
-            to="/timeline"
+            to="/projects"
             className={`px-3 py-2 rounded transition-all ${
-              location.pathname === '/timeline'
+              location.pathname === '/projects'
                 ? 'bg-blue-600 text-white font-semibold'
                 : 'hover:underline hover:bg-blue-50 dark:hover:bg-gray-800'
             }`}
           >
-            Timeline
+            Projects
           </Link>
           <a
             href="#contact"
@@ -162,11 +162,11 @@ export default function Navigation({ dark, setDark, activeSection }) {
               Experience
             </a>
             <Link 
-              to="/timeline" 
+              to="/projects" 
               onClick={() => setMenuOpen(false)}
-              className={`${location.pathname === '/timeline' ? 'font-bold text-blue-600' : ''}`}
+              className={`${location.pathname === '/projects' ? 'font-bold text-blue-600' : ''}`}
             >
-              Timeline
+              Projects
             </Link>
             <a 
               href="#contact" 
