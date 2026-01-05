@@ -91,7 +91,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-light dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
       {/* Shared Navigation Component */}
       <Navigation dark={dark} setDark={setDark} activeSection={activeSection} />
 
@@ -120,7 +120,7 @@ export default function App() {
         <section id="experience" className="mb-12 scroll-mt-20">
           <h2 className="text-2xl font-bold mb-3">Experience</h2>
           <div className="space-y-6">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border-l-4 border-indigo-600">
+            <div className="bg-white dark:bg-gray-800 shadow-xl p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 border-l-4 border-indigo-600">
               <h3 className="font-semibold text-xl mb-2">Senior Data Engineer — Intuit</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">08/2025 – Present</p>
               <ul className="list-disc ml-6 mt-2 space-y-1">
@@ -128,7 +128,7 @@ export default function App() {
                 <li>Developing scalable data infrastructure to drive customer insights and revenue optimization.</li>
               </ul>
             </div>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border-l-4 border-blue-600">
+            <div className="bg-white dark:bg-gray-800 shadow-xl p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 border-l-4 border-blue-600">
               <h3 className="font-semibold text-xl mb-2">Senior Data Engineer — Cisco Systems</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">02/2021 – 04/2025</p>
               <ul className="list-disc ml-6 mt-2 space-y-1">
@@ -138,21 +138,21 @@ export default function App() {
                 <li>Owned production monitoring and observability with Datadog, ensuring 99.5%+ reliability.</li>
               </ul>
             </div>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border-l-4 border-green-600">
+            <div className="bg-white dark:bg-gray-800 shadow-xl p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 border-l-4 border-green-600">
               <h3 className="font-semibold text-xl mb-2">Software Development Engineer — Cisco Systems</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">07/2019 – 01/2021</p>
               <ul className="list-disc ml-6 mt-2 space-y-1">
                 <li>Built REST API microservices for IoT Operations Center, automated PyATS tests, and containerized services on Kubernetes.</li>
               </ul>
             </div>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border-l-4 border-yellow-600">
+            <div className="bg-white dark:bg-gray-800 shadow-xl p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 border-l-4 border-yellow-600">
               <h3 className="font-semibold text-xl mb-2">Graduate Student-Assistant — Distributed Systems Lab, UT Dallas</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">07/2017 – 06/2019</p>
               <ul className="list-disc ml-6 mt-2 space-y-1">
                 <li>Modeled IoT sensor firmware and embedded Java modules integrating with backend analytics for smart agriculture.</li>
               </ul>
             </div>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border-l-4 border-purple-600">
+            <div className="bg-white dark:bg-gray-800 shadow-xl p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 border-l-4 border-purple-600">
               <h3 className="font-semibold text-xl mb-2">Senior Software Developer — Tata Consultancy Services</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">04/2010 – 07/2016</p>
               <ul className="list-disc ml-6 mt-2 space-y-1">
@@ -162,12 +162,12 @@ export default function App() {
           </div>
         </section>
 
-        <section id="contact" className="mb-20 scroll-mt-24">
+        <section id="contact" className="mt-32 mb-20 scroll-mt-24">
           <div className="flex justify-center items-center gap-8">
             {/* Email */}
             <a 
               href="mailto:abhi06548@yahoo.com" 
-              className="p-4 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+              className="p-4 rounded-full bg-white dark:bg-gray-800 shadow-xl shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
               title="Email: abhi06548@yahoo.com"
               aria-label="Email"
             >
@@ -179,7 +179,7 @@ export default function App() {
             {/* Phone */}
             <a 
               href="tel:+16822569224" 
-              className="p-4 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+              className="p-4 rounded-full bg-white dark:bg-gray-800 shadow-xl shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
               title="Phone: +1 682-256-9224"
               aria-label="Phone"
             >
@@ -193,7 +193,7 @@ export default function App() {
               href="https://www.linkedin.com/in/abhishek06548" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="p-4 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+              className="p-4 rounded-full bg-white dark:bg-gray-800 shadow-xl shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
               title="LinkedIn: abhishek06548"
               aria-label="LinkedIn"
             >
@@ -207,7 +207,7 @@ export default function App() {
               href="https://github.com/abhi06548" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="p-4 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+              className="p-4 rounded-full bg-white dark:bg-gray-800 shadow-xl shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
               title="GitHub: abhi06548"
               aria-label="GitHub"
             >
@@ -221,7 +221,7 @@ export default function App() {
               href="https://www.facebook.com/abhishek.datta.5243" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="p-4 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+              className="p-4 rounded-full bg-white dark:bg-gray-800 shadow-xl shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
               title="Facebook: Abhishek Datta"
               aria-label="Facebook"
             >

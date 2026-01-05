@@ -4,12 +4,12 @@ A modern, responsive portfolio website showcasing professional experience, skill
 
 ## Features
 
-- **Multi-Page Routing**: Separate pages for main content and detailed career timeline using React Router
+- **Multi-Page Routing**: Separate pages for main content and detailed projects using React Router
 - **Top Navigation Bar**: Clean, left-aligned navigation with section highlighting
 - **Time-Based Theme**: Automatically switches between light and dark mode based on local time with manual toggle option
 - **Scroll Spy**: Navigation automatically highlights the current section as you scroll
 - **Responsive Design**: Mobile-friendly with a collapsible menu
-- **Interactive Timeline**: Beautiful career & projects timeline with alternating left/right layout and animations
+- **Interactive Projects**: Beautiful career & projects page with alternating left/right layout and animations
 - **Smooth Animations**: Framer Motion animations for enhanced user experience
 - **Modern UI**: Built with Tailwind CSS for a clean, professional look
 - **GitHub Pages SPA Support**: Client-side routing works seamlessly on GitHub Pages
@@ -69,7 +69,7 @@ npm run preview
 ```
 ├── src/
 │   ├── App.jsx          # Home page component (Summary, Skills, Experience, Contact)
-│   ├── Timeline.jsx     # Career & Projects timeline page
+│   ├── Timeline.jsx     # Career & Projects page
 │   ├── main.jsx         # React entry point with React Router setup
 │   └── index.css        # Global styles, Tailwind imports, and custom animations
 ├── public/
@@ -93,8 +93,8 @@ Main landing page with quick overview:
 - Work Experience (condensed)
 - Contact Information
 
-### Timeline Page (`/timeline`)
-Detailed career and projects timeline with:
+### Projects Page (`/projects`)
+Detailed career and projects with:
 - Interactive alternating left/right layout
 - Industrial/Professional projects (left-aligned)
 - Academic history and projects (right-aligned)
