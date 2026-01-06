@@ -111,7 +111,11 @@ export default function Navigation({ dark, setDark, activeSection }) {
         {/* Right aligned theme toggle button */}
         <button
           onClick={() => setDark((s) => !s)}
-          className="px-3 py-1 rounded border bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
+          className={`px-4 py-1.5 rounded-full border text-sm shadow-sm transition-colors ${
+            dark 
+              ? 'bg-gray-100 hover:bg-gray-200 border-gray-300 text-gray-800' 
+              : 'bg-gray-600 hover:bg-gray-700 border-gray-500 text-white'
+          }`}
           title={dark ? 'Switch to light theme' : 'Switch to dark theme'}
         >
           {dark ? '☀️ Light' : '🌙 Dark'}
@@ -129,7 +133,11 @@ export default function Navigation({ dark, setDark, activeSection }) {
         </button>
         <button
           onClick={() => setDark((s) => !s)}
-          className="px-3 py-1 rounded border bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 text-sm"
+          className={`px-3 py-1.5 rounded-full border text-sm shadow-sm transition-colors ${
+            dark 
+              ? 'bg-gray-100 hover:bg-gray-200 border-gray-300 text-gray-800' 
+              : 'bg-gray-600 hover:bg-gray-700 border-gray-500 text-white'
+          }`}
           title={dark ? 'Switch to light theme' : 'Switch to dark theme'}
         >
           {dark ? '☀️' : '🌙'}
