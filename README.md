@@ -1,4 +1,4 @@
-# Abhishek Datta - Portfolio Website
+# Portfolio Website
 
 A modern, responsive portfolio website showcasing professional experience, skills, projects, and contact information.
 
@@ -13,6 +13,7 @@ A modern, responsive portfolio website showcasing professional experience, skill
 - **Smooth Animations**: Framer Motion animations for enhanced user experience
 - **Modern UI**: Built with Tailwind CSS for a clean, professional look
 - **GitHub Pages SPA Support**: Client-side routing works seamlessly on GitHub Pages
+- **Google Analytics 4**: Professional visitor tracking and insights (see [setup guide](./GOOGLE_ANALYTICS_SETUP.md))
 
 ## Tech Stack
 
@@ -21,6 +22,7 @@ A modern, responsive portfolio website showcasing professional experience, skill
 - **Vite** - Next-generation frontend build tool
 - **Tailwind CSS** - Utility-first CSS framework
 - **Framer Motion** - Animation library for React
+- **React GA4** - Google Analytics 4 integration for visitor tracking
 - **PostCSS & Autoprefixer** - CSS processing tools
 
 ## Getting Started
@@ -70,7 +72,9 @@ npm run preview
 ├── src/
 │   ├── App.jsx          # Home page component (Summary, Skills, Experience, Contact)
 │   ├── Timeline.jsx     # Career & Projects page
-│   ├── main.jsx         # React entry point with React Router setup
+│   ├── Navigation.jsx   # Shared navigation component
+│   ├── main.jsx         # React entry point with React Router and GA setup
+│   ├── analytics.js     # Google Analytics 4 integration
 │   └── index.css        # Global styles, Tailwind imports, and custom animations
 ├── public/
 │   ├── Full_time_Resume_DataEngg_final.pdf
@@ -81,6 +85,7 @@ npm run preview
 ├── index.html           # HTML template with SPA redirect script
 ├── vite.config.js       # Vite configuration
 ├── tailwind.config.js   # Tailwind CSS configuration
+├── GOOGLE_ANALYTICS_SETUP.md  # GA4 setup instructions
 └── package.json         # Project dependencies and scripts
 ```
 
@@ -148,6 +153,27 @@ Modify `tailwind.config.js` for theme customization:
 
 Place images, PDFs, and other static files in the `public/` directory.
 
+## Google Analytics Setup
+
+This portfolio includes Google Analytics 4 for tracking visitor insights. To set it up:
+
+1. Create a Google Analytics 4 property at [analytics.google.com](https://analytics.google.com/)
+2. Get your Measurement ID (format: `G-XXXXXXXXXX`)
+3. Open `src/main.jsx` and replace the placeholder:
+   ```javascript
+   const GA_MEASUREMENT_ID = 'G-YOUR_ACTUAL_ID_HERE';
+   ```
+4. Deploy your site and verify tracking in GA Real-time reports
+
+For detailed setup instructions, see [GOOGLE_ANALYTICS_SETUP.md](./GOOGLE_ANALYTICS_SETUP.md).
+
+### What's Tracked
+- Page views and route changes
+- User location and demographics
+- Traffic sources (Google, LinkedIn, direct, etc.)
+- Session duration and engagement
+- Device and browser information
+
 ## Deployment
 
 This project is configured for GitHub Pages deployment. The built files from the `dist/` directory can be deployed to any static hosting service.
@@ -168,13 +194,6 @@ This project is configured for GitHub Pages deployment. The built files from the
 ## License
 
 This project is open source and available for personal use.
-
-## Contact
-
-**Abhishek Datta**
-- Email: abhi06548@yahoo.com
-- Phone: +1 682-256-9224
-- LinkedIn: [linkedin.com/in/abhishek06548](https://www.linkedin.com/in/abhishek06548)
 
 ---
 
