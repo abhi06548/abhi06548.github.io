@@ -6,6 +6,11 @@ export default function Timeline() {
   const [dark, setDark] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
+  // Handle project click to show details
+  const handleProjectClick = (projectId) => {
+    setSelectedProject(projectId);
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -246,7 +251,7 @@ export default function Timeline() {
             >
               <div 
                 className="bg-white dark:bg-gray-800 shadow-xl rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border-r-4 border-indigo-600 cursor-pointer"
-                onClick={() => setSelectedProject('intuit')}
+                onClick={() => handleProjectClick('intuit')}
               >
                 <div className="flex items-start justify-end gap-4 mb-3">
                   <img src="/logo-intuit.png" alt="Intuit" className="w-14 h-8 flex-shrink-0 object-contain mt-0.5 bg-white rounded px-1 py-0.5" />
@@ -275,7 +280,7 @@ export default function Timeline() {
             >
               <div 
                 className="bg-white dark:bg-gray-800 shadow-xl rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border-r-4 border-blue-600 cursor-pointer"
-                onClick={() => setSelectedProject('cisco_ai')}
+                onClick={() => handleProjectClick('cisco_ai')}
               >
                 <div className="flex items-start justify-end gap-4 mb-3">
                   <img src="/logo-cisco.png" alt="Cisco" className="w-10 h-10 flex-shrink-0 object-contain -mt-1" />
@@ -311,7 +316,7 @@ export default function Timeline() {
             >
               <div 
                 className="bg-white dark:bg-gray-800 shadow-xl rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border-r-4 border-green-600 cursor-pointer"
-                onClick={() => setSelectedProject('cisco_iot')}
+                onClick={() => handleProjectClick('cisco_iot')}
               >
                 <div className="flex items-start justify-end gap-4 mb-3">
                   <img src="/logo-cisco.png" alt="Cisco" className="w-10 h-10 flex-shrink-0 object-contain -mt-1" />
@@ -355,7 +360,7 @@ export default function Timeline() {
               >
                 <div 
                   className="bg-white dark:bg-gray-800 shadow-xl rounded-xl py-6 pr-6 pl-3 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border-l-4 border-purple-600 cursor-pointer"
-                  onClick={() => setSelectedProject('ms_degree')}
+                  onClick={() => handleProjectClick('ms_degree')}
                 >
                   <div className="flex gap-3">
                     <img src="/icon-education.svg" alt="Education" className="w-10 h-10 flex-shrink-0 object-contain" />
@@ -379,7 +384,7 @@ export default function Timeline() {
               >
                 <div 
                   className="bg-white dark:bg-gray-800 shadow-xl rounded-xl py-6 pr-6 pl-3 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border-l-4 border-red-600 cursor-pointer"
-                  onClick={() => setSelectedProject('social_media')}
+                  onClick={() => handleProjectClick('social_media')}
                 >
                   <div className="flex gap-3">
                     <img src="/icon-web.svg" alt="Web" className="w-10 h-10 flex-shrink-0 object-contain" />
@@ -416,7 +421,7 @@ export default function Timeline() {
               >
                 <div 
                   className="bg-white dark:bg-gray-800 shadow-xl rounded-xl py-6 pr-6 pl-3 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border-l-4 border-yellow-600 cursor-pointer"
-                  onClick={() => setSelectedProject('iot_agriculture')}
+                  onClick={() => handleProjectClick('iot_agriculture')}
                 >
                   <div className="flex gap-3">
                     <img src="/icon-agri.svg" alt="Agriculture" className="w-10 h-10 flex-shrink-0 object-contain" />
@@ -440,7 +445,7 @@ export default function Timeline() {
               >
                 <div 
                   className="bg-white dark:bg-gray-800 shadow-xl rounded-xl py-6 pr-6 pl-3 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border-l-4 border-indigo-600 cursor-pointer"
-                  onClick={() => setSelectedProject('bandwidth')}
+                  onClick={() => handleProjectClick('bandwidth')}
                 >
                   <div className="flex gap-3">
                     <img src="/icon-net.svg" alt="Network" className="w-10 h-10 flex-shrink-0 object-contain" />
@@ -464,7 +469,7 @@ export default function Timeline() {
               >
                 <div 
                   className="bg-white dark:bg-gray-800 shadow-xl rounded-xl py-6 pr-6 pl-3 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border-l-4 border-cyan-600 cursor-pointer"
-                  onClick={() => setSelectedProject('water_quality')}
+                  onClick={() => handleProjectClick('water_quality')}
                 >
                   <div className="flex gap-3">
                     <img src="/icon-water.svg" alt="Water" className="w-10 h-10 flex-shrink-0 object-contain" />
@@ -494,7 +499,7 @@ export default function Timeline() {
             >
               <div 
                 className="bg-white dark:bg-gray-800 shadow-xl rounded-xl py-6 pr-6 pl-3 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border-l-4 border-teal-600 cursor-pointer"
-                onClick={() => setSelectedProject('fog_computing')}
+                onClick={() => handleProjectClick('fog_computing')}
               >
                 <div className="flex gap-3">
                   <img src="/icon-fog.svg" alt="Fog Computing" className="w-10 h-10 flex-shrink-0 object-contain" />
@@ -529,7 +534,7 @@ export default function Timeline() {
             >
               <div 
                 className="bg-white dark:bg-gray-800 shadow-xl rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border-r-4 border-gray-600 cursor-pointer"
-                onClick={() => setSelectedProject('tcs')}
+                onClick={() => handleProjectClick('tcs')}
               >
                 <div className="flex items-start justify-end gap-4 mb-3">
                   <img src="/logo-tcs.png" alt="TCS" className="w-12 h-6 flex-shrink-0 object-contain bg-white dark:bg-white rounded px-1 py-0.5 mt-1" />
@@ -566,7 +571,7 @@ export default function Timeline() {
             >
               <div 
                 className="bg-white dark:bg-gray-800 shadow-xl rounded-xl py-6 pr-6 pl-3 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border-l-4 border-orange-600 cursor-pointer"
-                onClick={() => setSelectedProject('ieee')}
+                onClick={() => handleProjectClick('ieee')}
               >
                 <div className="flex gap-3">
                   <img src="/icon-paper.svg" alt="Publication" className="w-10 h-10 flex-shrink-0 object-contain" />
@@ -602,7 +607,7 @@ export default function Timeline() {
             >
               <div 
                 className="bg-white dark:bg-gray-800 shadow-xl rounded-xl py-6 pr-6 pl-3 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border-l-4 border-pink-600 cursor-pointer"
-                onClick={() => setSelectedProject('btech')}
+                onClick={() => handleProjectClick('btech')}
               >
                 <div className="flex gap-3">
                   <img src="/icon-education.svg" alt="Education" className="w-10 h-10 flex-shrink-0 object-contain" />
@@ -721,7 +726,7 @@ export default function Timeline() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               className="fixed inset-0 bg-transparent backdrop-blur-md z-50 flex items-center justify-center p-4"
-              onClick={() => setSelectedProject(null)}
+              onClick={() => handleProjectClick(null)}
             >
               <motion.div
                 initial={{ scale: 0.9, opacity: 0, y: 20 }}
