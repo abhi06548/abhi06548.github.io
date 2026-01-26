@@ -85,27 +85,8 @@ export default function Navigation({ dark, setDark, activeSection }) {
                 : 'hover:underline hover:bg-blue-50 dark:hover:bg-gray-800'
             }`}
           >
-            Projects
+            Timeline
           </Link>
-          <a
-            href="#contact"
-            onClick={(e) => handleNavigation(e, 'contact')}
-            className={`px-3 py-2 rounded transition-all ${
-              isHomePage && activeSection === 'contact'
-                ? 'bg-blue-600 text-white font-semibold'
-                : 'hover:underline hover:bg-blue-50 dark:hover:bg-gray-800'
-            }`}
-          >
-            Contact
-          </a>
-          <a
-            href="/Full_time_Resume_DataEngg_final.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:underline hover:bg-blue-50 dark:hover:bg-gray-800 px-3 py-2 rounded transition-all"
-          >
-            Resume
-          </a>
         </div>
 
         {/* Right aligned theme toggle button */}
@@ -174,22 +155,8 @@ export default function Navigation({ dark, setDark, activeSection }) {
               onClick={() => setMenuOpen(false)}
               className={`${location.pathname === '/projects' ? 'font-bold text-blue-600' : ''}`}
             >
-              Projects
+              Timeline
             </Link>
-            <a 
-              href="#contact" 
-              onClick={(e) => handleNavigation(e, 'contact')}
-              className={`${isHomePage && activeSection === 'contact' ? 'font-bold text-blue-600' : ''}`}
-            >
-              Contact
-            </a>
-            <a 
-              href="/Full_time_Resume_DataEngg_final.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
-              Resume
-            </a>
           </div>
         </div>
       )}
