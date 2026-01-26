@@ -222,7 +222,7 @@ export default function Timeline() {
       <div className="container mx-auto px-6 py-12 max-w-7xl pb-96">
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-            Projects Timeline
+            Milestones
           </h2>
           <p className="text-gray-600 dark:text-gray-400">
             A comprehensive view of my professional journey and academic achievements
@@ -233,14 +233,14 @@ export default function Timeline() {
           {/* Central Timeline Line */}
           <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500"></div>
 
-          {/* 2025 Year Badge */}
+          {/* Present Year Badge */}
           <div className="flex justify-center sticky top-20 z-20 mb-8">
-            <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-8 py-2 rounded-lg font-bold text-lg shadow-lg">
-              2025
+            <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-2 rounded-lg font-bold text-lg shadow-lg">
+              Present
             </div>
           </div>
 
-          {/* 2025 - Intuit */}
+          {/* Current - Intuit */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 mb-10">
             <motion.div 
               className="text-right pr-2"

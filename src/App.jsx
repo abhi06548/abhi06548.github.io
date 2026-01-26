@@ -95,19 +95,75 @@ export default function App() {
       {/* Shared Navigation Component */}
       <Navigation dark={dark} setDark={setDark} activeSection={activeSection} />
 
-      <header className="header-gradient text-white py-16 text-center">
-        <h1 className="text-4xl font-extrabold fade-in">Abhishek Datta</h1>
-        <p className="mt-2 opacity-90 fade-in-delay">Senior Data Engineer • AWS • Spark • Airflow • ETL • AI-driven Analytics</p>
+      <header className="header-gradient text-white py-8">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <div className="flex flex-col md:flex-row items-center md:items-center md:justify-start gap-12 md:gap-20">
+            {/* Profile Photo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="flex-shrink-0"
+            >
+              <div className="relative">
+                <img 
+                  src="/profile-photo.jpg" 
+                  alt="Abhishek Datta"
+                  className="w-40 h-52 md:w-44 md:h-56 rounded-lg object-cover border-4 border-white shadow-2xl"
+                  onError={(e) => {
+                    // Placeholder fallback - transparent with "Coming Soon" text
+                    e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='200'%3E%3Crect width='160' height='200' fill='rgba(255,255,255,0.1)' stroke='rgba(255,255,255,0.4)' stroke-width='2' rx='8'/%3E%3Ctext x='80' y='95' font-family='Arial' font-size='18' fill='rgba(255,255,255,0.8)' text-anchor='middle' font-weight='bold'%3EComing%3C/text%3E%3Ctext x='80' y='120' font-family='Arial' font-size='18' fill='rgba(255,255,255,0.8)' text-anchor='middle' font-weight='bold'%3ESoon%3C/text%3E%3C/svg%3E";
+                  }}
+                />
+                <div className="absolute inset-0 rounded-lg ring-4 ring-white/20 ring-offset-4 ring-offset-transparent"></div>
+              </div>
+            </motion.div>
+
+            {/* Text Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-center md:text-left flex-1"
+            >
+              <h1 className="text-3xl md:text-4xl font-extrabold mb-3 leading-tight">
+                Abhishek Datta
+              </h1>
+              <p className="text-base md:text-lg opacity-90 mb-6">
+                Senior Data Engineer • AWS • Spark • Airflow • ETL • AI-driven Analytics
+              </p>
+              
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                <a
+                  href="#contact"
+                  onClick={(e) => scrollToSection(e, 'contact')}
+                  className="px-6 py-2.5 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white font-semibold rounded-lg shadow-lg hover:bg-white/20 hover:scale-105 transition-all duration-300 text-sm"
+                >
+                  Get In Touch
+                </a>
+                <a
+                  href="/Full_time_Resume_DataEngg_final.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-2.5 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white font-semibold rounded-lg shadow-lg hover:bg-white/20 hover:scale-105 transition-all duration-300 text-sm"
+                >
+                  Resume
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </header>
 
       <main className="container mx-auto px-6 py-12 max-w-4xl">
 
-        <section id="summary" className="mb-6 scroll-mt-20">
+        <section id="summary" className="mb-12 scroll-mt-20">
           <h2 className="text-2xl font-bold mb-3">Professional Summary</h2>
           <p>Senior Data Engineer with expertise in large-scale Spark pipelines, AWS analytics, Airflow orchestration, and AI-driven wireless optimization. Delivered 50% latency improvements and modernized observability for production workloads.</p>
         </section>
 
-        <section id="skills" className="mb-8 scroll-mt-20">
+        <section id="skills" className="mb-16 scroll-mt-20">
           <h2 className="text-2xl font-bold mb-3">Technical Stack</h2>
           <p><strong>Languages:</strong> Python, Java, SQL, Shell scripting</p>
           <p><strong>Frameworks / Big Data:</strong> Apache Spark, PySpark, Pandas, Airflow, Hudi, Kafka</p>
@@ -117,7 +173,7 @@ export default function App() {
           <p><strong>GenAI:</strong> ChatGPT, Gemini, Copilot, Cursor (Prompt engineering & pipeline automation)</p>
         </section>
 
-        <section id="experience" className="mb-12 scroll-mt-20">
+        <section id="experience" className="mb-20 scroll-mt-20">
           <h2 className="text-2xl font-bold mb-3">Experience</h2>
           <div className="space-y-6">
             <div className="bg-white dark:bg-gray-800 shadow-xl p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 border-l-4 border-indigo-600">
@@ -173,18 +229,6 @@ export default function App() {
             >
               <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </a>
-
-            {/* Phone */}
-            <a 
-              href="tel:+16822569224" 
-              className="p-4 rounded-full bg-white dark:bg-gray-800 shadow-xl shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
-              title="Phone: +1 682-256-9224"
-              aria-label="Phone"
-            >
-              <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
             </a>
 
