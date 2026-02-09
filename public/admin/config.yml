@@ -2,8 +2,8 @@ backend:
   name: git-gateway
   branch: main # Branch to update
   repo: abhi06548/abhi06548.github.io # Path to your GitHub repo
-  base_url: https://spontaneous-baklava-06548.netlify.app # Your Netlify site URL (required for git-gateway)
-  # git-gateway uses Netlify Identity for authentication
+  identity_url: "https://spontaneous-baklava-06548.netlify.app/.netlify/identity"
+  gateway_url: "https://spontaneous-baklava-06548.netlify.app/.netlify/git"  # git-gateway uses Netlify Identity for authentication
   # This is the recommended approach for static sites
   commit_messages:
     create: 'Create {{collection}} "{{slug}}"'

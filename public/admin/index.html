@@ -11,6 +11,7 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
     // Initialize Netlify Identity with your Netlify site URL
+    // This allows cross-origin access from GitHub Pages to Netlify Identity
     if (window.netlifyIdentity) {
       window.netlifyIdentity.init({
         APIUrl: "https://spontaneous-baklava-06548.netlify.app/.netlify/identity"
