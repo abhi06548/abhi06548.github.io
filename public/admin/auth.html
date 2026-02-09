@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>OAuth Proxy</title>
+</head>
+<body>
+  <script>
+    // Proxy page on same domain - fixes relative path issue
+    // Decap CMS calls /admin/auth.html, which proxies to Netlify function
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    const provider = urlParams.get('provider');
+    const siteId = urlParams.get('site_id');
+    const scope = urlParams.get('scope');
+    
+    // Check if this is an API call (has Accept: application/json header) or page navigation
+    // For now, handle as page navigation since Decap CMS seems to navigate to auth_endpoint
+    
+    if (code) {
+      // Forward the code to Netlify function
+      fetch('https://spontaneous-baklava-06548.netlify.app/.netlify/functions/auth?code=' + encodeURIComponent(code))
+        .then(response => response.json())
+        .then(data => {
+          if (data.token) {
+            // Decap CMS expects to receive the token
+            // Try to communicate with parent window (if in iframe/popup)
+            if (window.opener) {
+              // In popup - send token to opener
+              window.opener.postMessage({
+                type: 'authorization',
+                token: data.token
+              }, '*');
+              window.close();
+            } else if (window.parent !== window) {
+              // In iframe - send to parent
+              window.parent.postMessage({
+                type: 'authorization',
+                token: data.token
+              }, '*');
+            } else {
+              // Direct navigation - store token and redirect
+              sessionStorage.setItem('cms_token', data.token);
+              window.location.href = '/admin/';
+            }
+          } else {
+            document.body.innerHTML = '<h1>Authentication Error</h1><p>' + (data.error || 'Failed to authenticate') + '</p>';
+          }
+        })
+        .catch(error => {
+          document.body.innerHTML = '<h1>Error</h1><p>Failed to connect to authentication service.</p>';
+          console.error('Auth proxy error:', error);
+        });
+    } else {
+      // No code parameter - might be initial OAuth request
+      // Decap CMS should handle this, but if we get here, show error
+      document.body.innerHTML = '<h1>OAuth Proxy</h1><p>Waiting for authorization code...</p>';
+    }
+  </script>
+</body>
+</html>
