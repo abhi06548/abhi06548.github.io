@@ -1,0 +1,115 @@
+backend:
+  name: github
+  repo: abhi06548/abhi06548.github.io # Path to your GitHub repo
+  branch: main # Branch to update
+  base_url: https://spontaneous-baklava-06548.netlify.app # Netlify OAuth proxy URL
+  auth_endpoint: /.netlify/auth # OAuth endpoint
+  auth_scope: repo # GitHub OAuth scope
+  commit_messages:
+    create: 'Create {{collection}} "{{slug}}"'
+    update: 'Update {{collection}} "{{slug}}"'
+    delete: 'Delete {{collection}} "{{slug}}"'
+    uploadMedia: 'Upload "{{path}}"'
+    deleteMedia: 'Delete "{{path}}"'
+
+# Uncomment below to enable drafts
+# publish_mode: editorial_workflow
+
+media_folder: public/images # Media files will be stored in the repo under public/images
+public_folder: /images # The src attribute for uploaded media will begin with /images
+
+collections:
+  - name: "profile" # Used in routes, e.g., /admin/collections/profile
+    label: "Profile Information"
+    folder: "content/profile"
+    create: false
+    fields:
+      - {label: "Full Name", name: "name", widget: "string"}
+      - {label: "Job Title", name: "title", widget: "string"}
+      - {label: "Title Description", name: "description", widget: "string", hint: "e.g., Senior Data Engineer • AWS • Spark • Airflow"}
+      - {label: "Profile Photo", name: "photo", widget: "image", required: false}
+      - {label: "Professional Summary", name: "summary", widget: "text"}
+
+  - name: "experience"
+    label: "Work Experience"
+    folder: "content/experience"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Job Title", name: "title", widget: "string"}
+      - {label: "Company", name: "company", widget: "string"}
+      - {label: "Start Date", name: "startDate", widget: "date", format: "MM/YYYY"}
+      - {label: "End Date", name: "endDate", widget: "date", required: false, format: "MM/YYYY"}
+      - {label: "Is Current Job?", name: "isCurrent", widget: "boolean", default: false}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Bullet Points", name: "bullets", widget: "list", fields: [{label: "Point", name: "point", widget: "string"}]}
+      - {label: "Border Color", name: "color", widget: "select", options: ["indigo", "blue", "green", "yellow", "purple"], default: "indigo"}
+
+  - name: "skills"
+    label: "Technical Skills"
+    folder: "content/skills"
+    create: false
+    files:
+      - label: "Languages"
+        name: "languages"
+        file: "content/skills/languages.md"
+        fields:
+          - {label: "Skills", name: "skills", widget: "string", hint: "Comma-separated list, e.g., Python, Java, SQL, Shell scripting"}
+      - label: "Frameworks / Big Data"
+        name: "frameworks"
+        file: "content/skills/frameworks.md"
+        fields:
+          - {label: "Skills", name: "skills", widget: "string", hint: "Comma-separated list, e.g., Apache Spark, PySpark, Pandas, Airflow, Hudi, Kafka"}
+      - label: "Cloud"
+        name: "cloud"
+        file: "content/skills/cloud.md"
+        fields:
+          - {label: "Skills", name: "skills", widget: "string", hint: "Comma-separated list, e.g., AWS (S3, Glue, Lambda, EMR, CloudWatch), Databricks, Snowflake"}
+      - label: "Databases"
+        name: "databases"
+        file: "content/skills/databases.md"
+        fields:
+          - {label: "Skills", name: "skills", widget: "string", hint: "Comma-separated list, e.g., PostgreSQL, MySQL, OpenSearch, PrestoSQL"}
+      - label: "DevOps / Infra"
+        name: "devops"
+        file: "content/skills/devops.md"
+        fields:
+          - {label: "Skills", name: "skills", widget: "string", hint: "Comma-separated list, e.g., Docker, Kubernetes, GitLab CI/CD, Terraform, Jenkins"}
+      - label: "GenAI"
+        name: "genai"
+        file: "content/skills/genai.md"
+        fields:
+          - {label: "Skills", name: "skills", widget: "string", hint: "Comma-separated list, e.g., ChatGPT, Gemini, Copilot, Cursor (Prompt engineering & pipeline automation)"}
+
+  - name: "timeline"
+    label: "Timeline Milestones"
+    folder: "content/timeline"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Company/Institution", name: "company", widget: "string"}
+      - {label: "Start Date", name: "startDate", widget: "date", format: "YYYY-MM"}
+      - {label: "End Date", name: "endDate", widget: "date", required: false, format: "YYYY-MM"}
+      - {label: "Is Current?", name: "isCurrent", widget: "boolean", default: false}
+      - {label: "Period Display", name: "period", widget: "string", hint: "e.g., Aug 2025 – Present"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Details", name: "details", widget: "list", fields: [{label: "Detail", name: "detail", widget: "string"}]}
+      - {label: "Technologies", name: "technologies", widget: "list", fields: [{label: "Tech", name: "tech", widget: "string"}]}
+      - {label: "Color", name: "color", widget: "select", options: ["indigo", "blue", "green", "purple", "red", "yellow", "pink"], default: "indigo"}
+      - {label: "Logo", name: "logo", widget: "image", required: false}
+      - {label: "Icon", name: "icon", widget: "string", required: false, hint: "Path to icon file"}
+
+  - name: "contact"
+    label: "Contact Information"
+    folder: "content/contact"
+    create: false
+    files:
+      - label: "Contact Details"
+        name: "contact"
+        file: "content/contact/contact.md"
+        fields:
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "LinkedIn", name: "linkedin", widget: "string", required: false}
+          - {label: "GitHub", name: "github", widget: "string", required: false}
+          - {label: "Facebook", name: "facebook", widget: "string", required: false}
