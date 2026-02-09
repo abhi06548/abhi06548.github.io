@@ -105,8 +105,8 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Return access token
-    // Decap CMS expects the token in the response body
+    // Return access token as JSON
+    // The proxy page (auth.html) will handle returning it to Decap CMS
     return {
       statusCode: 200,
       headers: {

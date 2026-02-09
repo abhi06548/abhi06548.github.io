@@ -2,8 +2,8 @@ backend:
   name: github
   repo: abhi06548/abhi06548.github.io # Path to your GitHub repo
   branch: main # Branch to update
-  base_url: https://abhi06548.github.io # Your GitHub Pages URL (where admin panel is hosted)
-  auth_endpoint: https://spontaneous-baklava-06548.netlify.app/.netlify/functions/auth # Full URL to OAuth proxy
+  base_url: https://abhi06548.github.io # Your GitHub Pages URL
+  auth_endpoint: /admin/auth.html # Proxy page on same domain (fixes relative path issue)
   auth_scope: repo # GitHub OAuth scope
   commit_messages:
     create: 'Create {{collection}} "{{slug}}"'
