@@ -3,7 +3,7 @@ backend:
   repo: abhi06548/abhi06548.github.io # Path to your GitHub repo
   branch: main # Branch to update
   base_url: https://spontaneous-baklava-06548.netlify.app # Netlify OAuth proxy URL
-  auth_endpoint: /.netlify/auth # OAuth endpoint
+  auth_endpoint: /.netlify/functions/auth # OAuth endpoint (correct path for Netlify Functions)
   auth_scope: repo # GitHub OAuth scope
   commit_messages:
     create: 'Create {{collection}} "{{slug}}"'
