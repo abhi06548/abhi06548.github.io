@@ -1,10 +1,10 @@
 backend:
-  name: github
-  repo: abhi06548/abhi06548.github.io # Path to your GitHub repo
+  name: git-gateway
   branch: main # Branch to update
-  base_url: https://abhi06548.github.io # Your GitHub Pages URL
-  auth_endpoint: /admin/auth.html # Proxy page on same domain (fixes relative path issue)
-  auth_scope: repo # GitHub OAuth scope
+  repo: abhi06548/abhi06548.github.io # Path to your GitHub repo
+  identity_url: "https://spontaneous-baklava-06548.netlify.app/.netlify/identity"
+  gateway_url: "https://spontaneous-baklava-06548.netlify.app/.netlify/git"  # git-gateway uses Netlify Identity for authentication
+  # This is the recommended approach for static sites
   commit_messages:
     create: 'Create {{collection}} "{{slug}}"'
     update: 'Update {{collection}} "{{slug}}"'
